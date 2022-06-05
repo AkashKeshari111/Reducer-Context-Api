@@ -1,23 +1,20 @@
 import logo from './logo.svg';
 import './App.css';
+import  Todos from './components/Todos'
+import TodoList from './components/TodoList';
+import { useContext } from 'react';
+import { TodosContext } from './context/TodosContext';
+
 
 function App() {
+ const {handleChange,handleClick,data,sendData,setSendData,handleRemove,handleChecked,toggle,setToggle}=useContext(TodosContext)
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      
+      <Todos/>
+      {sendData.map((el,index)=>(
+      <TodoList key={index} info={el} />
+        ))}
     </div>
   );
 }
